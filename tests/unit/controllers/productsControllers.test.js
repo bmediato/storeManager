@@ -44,7 +44,7 @@ describe('Testes de unidade camda controller products', function () {
 
     //   res.status = sinon.stub().returns(res);
     //   res.json = sinon.stub().returns();
-    //   sinon.stub(productsService, 'getById').resolves( '"id" must be a number');
+    //   sinon.stub(productsService, 'getById').resolves({type: 'INVALID_VALUE', message: '"id" must be a number'});
 
     //   await productsController.getById(req, res);
 
