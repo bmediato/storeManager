@@ -12,7 +12,7 @@ const getById = async (productId) => {
   if (error.type) return error;
 
   const product = await productsModel.getById(productId);
-  if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  if (!product) return { message: 'Product not found' };
 
   return product;
 };
