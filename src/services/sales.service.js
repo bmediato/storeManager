@@ -17,6 +17,19 @@ const getById = async (saleId) => {
   return sale;
 };
 
+// const createSales = async () => {
+//   const sale = await salesModel.insertSales();
+  
+//   if(!sale) return {}
+  
+// };
+
+// const createSalesProduct = async (productId, quantity) => {
+//   const error = schema.validateSale(productId, quantity);
+//   if (error.type) return error;
+
+// }
+
 module.exports = {
   getAll,
   getById,

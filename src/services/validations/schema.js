@@ -8,7 +8,13 @@ const addProduct = Joi.object({
   name: poitnSchema,
 });
 
+const addSale = Joi.object({
+  productId: idSchema,
+  quantity: idSchema,
+});
+
 module.exports = {
   idSchema,
   addProduct,
+  addSale,
 };

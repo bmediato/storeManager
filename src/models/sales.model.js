@@ -22,13 +22,24 @@ const getById = async (saleId) => {
   return camelize(result);
 };
 
-// const insertSales = async () => {
-//   const [{ insertId }] = await connection.execute(
-//     'INSERT INTO StoreManager.sales (date) VALUES (Now())',
-//   );
-// };
+const insertSales = async () => {
+  const [{ insertId }] = await connection.execute(
+    'INSERT INTO StoreManager.sales (date) VALUES (Now())',
+  );
+  return insertId;
+};
+
+const insertSalesProducts = async (saleId, product) => {
+  const [{ insertId }] = await connection.execute(
+    'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+    [saleId, product.productId, product.quantity],
+  );
+  return insertId;
+};
 
 module.exports = {
   getAll,
   getById,
+  insertSales,
+  insertSalesProducts,
 };
