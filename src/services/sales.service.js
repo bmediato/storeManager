@@ -17,16 +17,19 @@ const getById = async (saleId) => {
   return sale;
 };
 
-// const createSales = async () => {
+// const createSales = async (sale) => {
 //   const sale = await salesModel.insertSales();
   
 //   if(!sale) return {}
   
 // };
 
-// const createSalesProduct = async (productId, quantity) => {
-//   const error = schema.validateSale(productId, quantity);
+// const createSalesProduct = async (sale, product) => {
+//   const error = schema.validateSale(product.productId, product.quantity);
 //   if (error.type) return error;
+
+//   const result = await salesModel.createSalesProduct(sale, product);
+//   return result;
 
 // }
 
