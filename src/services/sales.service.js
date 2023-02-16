@@ -17,23 +17,31 @@ const getById = async (saleId) => {
   return sale;
 };
 
-// const createSales = async (sale) => {
-//   const sale = await salesModel.insertSales();
-  
-//   if(!sale) return {}
-  
-// };
+const createSalesProduct = async (sale) => {
+  const error = schema.validateSale(sale.productId, sale.quantity);
+  if (error.type) return error;
+  console.log(error.type);
 
-// const createSalesProduct = async (sale, product) => {
-//   const error = schema.validateSale(product.productId, product.quantity);
-//   if (error.type) return error;
-
-//   const result = await salesModel.createSalesProduct(sale, product);
-//   return result;
-
-// }
+  const validationProductID = await salesModel.getById(sale.productId);
+  console.log(validationProductID);
+  if (validationProductID.length === 0) {
+    return { message: 'Product not found', type: 'PRODUCT_NOT_FOUND' };
+  }
+    
+  const result = await salesModel.insertSales();
+  await Promise.all(sale.map(({ productId, quantity }) => salesModel
+    .insertSalesProducts(result, productId, quantity)));
+  return {
+    type: null,
+    message: {
+      id: result,
+      itemsSold: sale,
+    },
+  };
+};
 
 module.exports = {
   getAll,
   getById,
+  createSalesProduct,
 };
